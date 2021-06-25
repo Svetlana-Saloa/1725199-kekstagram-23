@@ -6,7 +6,6 @@ const DESCRIPTIONS = [
   'Прекрастное фото',
   'Мой мир',
 ];
-
 const NAMES = [
   'Вася',
   'Миша',
@@ -15,7 +14,6 @@ const NAMES = [
   'Ромашка',
   'Марина',
 ];
-
 const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -24,59 +22,47 @@ const MESSAGES = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
+const MIN_ID_COMENTS = 1;
+const MAX_ID_COMENTS = 25;
+const MIN_NUMBER_AVATAR = 1;
+const MAX_NUMBER_AVATAR = 6;
+const NUMBER_OF_COMMENTS = 5;
+const NUMBER_OF_PHOTOS = 25;
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
 
-const minIdComments = 1;
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const maxIdComaents = 25;
-
-const minIdAvatar = 1;
-
-const maxIdAvatar = 25;
-
-const COMMENTS_LIST = 5;
-
-const PHOTOS_LIST = 25;
-
-const minLikes = 15;
-
-const maxLikes = 20;
-
-const PHOTOS = [];
-
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function checkCommentSize(checkedString, maxLength) {
-  return checkedString.length <= maxLength;
-}
-
-checkCommentSize('some_string', 140);
+//const checkCommentSize = (checkedString, maxLength) => checkedString.length <= maxLength;
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-const сreateComments = () => ({
-  id: getRandomNumber(minIdComments, maxIdComaents),
-  avatar: `img/avatar-${ getRandomNumber(minIdAvatar, maxIdAvatar) }.svg` ,
+const сreateComment = () => ({
+  id: getRandomNumber(MIN_ID_COMENTS, MAX_ID_COMENTS),
+  avatar: `img/avatar-${ getRandomNumber(MIN_NUMBER_AVATAR, MAX_NUMBER_AVATAR) }.svg` ,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
 
-const getNumberComments = new Array(COMMENTS_LIST).fill(null).map(() => сreateComments());
+const photos = [];
 
 const getPhotos = (index) => ({
   id: index ,
   url: `photos/${ index }.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomNumber(minLikes, maxLikes),
-  comments: getNumberComments,
+  likes: getRandomNumber(MIN_LIKES, MAX_LIKES),
+  comments:  new Array(NUMBER_OF_COMMENTS).fill(null).map(() => сreateComment()),
 });
 
-// eslint-disable-next-line id-length
-for (let i =1; i<= PHOTOS_LIST; i++) {
-  const PHOTO = getPhotos (i);
-  PHOTOS.push (PHOTO);
-}
+const createPhotos = () => {
+  for (let i =1; i<= NUMBER_OF_PHOTOS; i++) {
+    const photo = getPhotos (i);
+    photos.push (photo);
+  }
+  return getPhotos;
+};
+
+createPhotos ();
 
 // eslint-disable-next-line no-console
-console.log(PHOTOS);
+//console.log(photos);
