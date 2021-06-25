@@ -31,13 +31,9 @@ const NUMBER_OF_PHOTOS = 25;
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-function checkCommentSize(checkedString, maxLength) {
-  return checkedString.length <= maxLength;
-}
+//const checkCommentSize = (checkedString, maxLength) => checkedString.length <= maxLength;
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
@@ -58,15 +54,15 @@ const getPhotos = (index) => ({
   comments:  new Array(NUMBER_OF_COMMENTS).fill(null).map(() => сreateComment()),
 });
 
-function createPhotos () {
+const createPhotos = () => {
   for (let i =1; i<= NUMBER_OF_PHOTOS; i++) {
     const photo = getPhotos (i);
     photos.push (photo);
   }
   return getPhotos;
-}
+};
 
 createPhotos ();
 
 // eslint-disable-next-line no-console
-console.log(photos);
+//console.log(photos);
