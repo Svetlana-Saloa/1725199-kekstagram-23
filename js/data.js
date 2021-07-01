@@ -61,3 +61,4 @@ const createPhotos = () => {
 createPhotos ();
 
 export {photos};
+export {createPhotos};
