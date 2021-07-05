@@ -40,8 +40,6 @@ const сreateComment = () => ({
   name: getRandomArrayElement(NAMES),
 });
 
-const photos = [];
-
 const getPhotos = (index) => ({
   id: index ,
   url: `photos/${ index }.jpg`,
@@ -51,13 +49,14 @@ const getPhotos = (index) => ({
 });
 
 const createPhotos = () => {
+  const photos = [];
   for (let i =1; i<= NUMBER_OF_PHOTOS; i++) {
     const photo = getPhotos (i);
     photos.push (photo);
   }
-  return getPhotos;
+  return photos;
 };
 
 createPhotos ();
 
-export {photos};
+export {createPhotos};

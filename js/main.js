@@ -1,6 +1,2 @@
 import './utils.js';
-import {photos} from './data.js';
-
-// eslint-disable-next-line no-console
-//console.log(photos);
-
+import './mini-pictures.js';
