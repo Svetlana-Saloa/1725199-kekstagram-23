@@ -19,3 +19,5 @@ miniPictures.forEach(({url, likes, comments}) => {
 });
 
 miniPicturesContainer.appendChild(miniPictureFragment);
+
+export{miniPictures};
